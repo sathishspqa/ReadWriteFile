@@ -30,7 +30,7 @@ public class ReadExcel {
 		
 		
 		//Path of the excel file
-		FileInputStream fs = new FileInputStream("C:\\Users\\Light\\eclipse-workspace\\ReadWriteFile\\src\\test\\resources\\InputFile.xlsx");
+		FileInputStream fs = new FileInputStream("C:\\Users\\Light\\git\\ReadWriteFile\\ReadWriteFile\\src\\test\\resources\\InputFile.xlsx");
 		//Creating a workbook
 		XSSFWorkbook workbook = new XSSFWorkbook(fs);
 		XSSFSheet sheet = workbook.getSheetAt(0);
@@ -78,7 +78,7 @@ public class ReadExcel {
 		
 		
 		//Path of the excel file
-		FileInputStream fs = new FileInputStream("C:\\Users\\Light\\eclipse-workspace\\ReadWriteFile\\src\\test\\resources\\InputFile.xlsx");
+		FileInputStream fs = new FileInputStream("C:\\Users\\Light\\git\\ReadWriteFile\\ReadWriteFile\\src\\test\\resources\\InputFile.xlsx");
 		//Creating a workbook
 		XSSFWorkbook workbook = new XSSFWorkbook(fs);
 		XSSFSheet sheet = workbook.getSheetAt(1);
@@ -121,65 +121,50 @@ public class ReadExcel {
 	}
 	
 	@Test (priority = 3)
-
-	public static void main(String[] args) throws IOException {
+	
+	public void write() throws Exception {
 		
 		
-		//Path of the excel file
-		FileInputStream fs = new FileInputStream("C:\\Users\\Light\\eclipse-workspace\\ReadWriteFile\\src\\test\\resources\\write.xlsx");
+		File file = new File("C:\\Users\\Light\\git\\ReadWriteFile\\ReadWriteFile\\src\\test\\resources\\output.xlsx");
 		
-
-	 
-	        // create blank workbook
-	        XSSFWorkbook workbook = new XSSFWorkbook();
-	        
-	        
-	 
-	        // Create a blank sheet
-	        XSSFSheet sheet = workbook.createSheet("0");
-	 
-	        ArrayList<Object[]> data = new ArrayList<Object[]>();
-	        data.add(new String[] { "ID", "PositionId", "ISIN","QUANTITY","Total Price"});
-	        data.add(new Object[] { "1.0", "1.0", "1234.0","3.0","60$" });
-	        data.add(new Object[] { "2.0", "2.0", "3456.0","5.0","100$"});
-	        data.add(new Object[] { "3.0", "3.0", "9876.0","6.0","30$" });
-	       
-	 
-	        // Iterate over data and write to sheet
-	        int rownum = 0;
-	        for (Object[] employeeDetails : data) {
-	 
-	            // Create Row
-	            XSSFRow row = sheet.createRow(rownum++);
-	 
-	            int cellnum = 0;
-	            for (Object obj : employeeDetails) {
-	 
-	                // Create cell
-	                XSSFCell cell = row.createCell(cellnum++);
-	 
-	                // Set value to cell
-	                if (obj instanceof String)
-	                    cell.setCellValue((String) obj);
-	                else if (obj instanceof Double)
-	                    cell.setCellValue((Double) obj);
-	                else if (obj instanceof Integer)
-	                    cell.setCellValue((Integer) obj);
-	            }
-	        }
-	        try {
-	 
-	            // Write the workbook in file system
-	            FileOutputStream out = new FileOutputStream(new File("C:\\Users\\Light\\eclipse-workspace\\ReadExcel\\src\\test\\resources\\write.xlsx"));
-	            workbook.write(out);
-	            out.close();
-	            System.out.println("Data has been created successfully");
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } finally {
-	            workbook.close();
-	        }
-	    }
+		 XSSFWorkbook wb = new XSSFWorkbook();
+		 
+		 XSSFSheet sh = wb.createSheet();
+		 
+		 sh.createRow(0).createCell(0).setCellValue("ID");
+		 sh.getRow(0).createCell(1).setCellValue("PositionId");
+		 sh.getRow(0).createCell(2).setCellValue("ISIN");
+		 sh.getRow(0).createCell(3).setCellValue("QUANTITY");
+		 sh.getRow(0).createCell(4).setCellValue("Total Price");
+		 
+		 sh.createRow(1).createCell(0).setCellValue(1.0);
+		 sh.getRow(1).createCell(1).setCellValue(1.0);
+		 sh.getRow(1).createCell(2).setCellValue(1234.0);
+		 sh.getRow(1).createCell(3).setCellValue(3.0);
+		 sh.getRow(1).createCell(4).setCellValue("60$");
+		 
+		 sh.createRow(2).createCell(0).setCellValue(2.0);
+		 sh.getRow(2).createCell(1).setCellValue(2.0);
+		 sh.getRow(2).createCell(2).setCellValue(3456.0);
+		 sh.getRow(2).createCell(3).setCellValue(5.0);
+		 sh.getRow(2).createCell(4).setCellValue("100$");
+		 
+		 sh.createRow(3).createCell(0).setCellValue(3.0);
+		 sh.getRow(3).createCell(1).setCellValue(3.0);
+		 sh.getRow(3).createCell(2).setCellValue(9876.0);
+		 sh.getRow(3).createCell(3).setCellValue(6.0);
+		 sh.getRow(3).createCell(4).setCellValue("30$");
+		 
+		 FileOutputStream fos = new FileOutputStream(file);
+		 
+		 wb.write(fos);
+		 
+	
+		
+		
+	}
+	
+	
 	
 
 }

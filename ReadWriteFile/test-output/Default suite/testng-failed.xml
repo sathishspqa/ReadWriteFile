@@ -5,8 +5,7 @@
     <classes>
       <class name="com.testscenarios.ReadExcel">
         <methods>
-          <include name="readExcel2"/>
-          <include name="readExcel"/>
+          <include name="write"/>
         </methods>
       </class> <!-- com.testscenarios.ReadExcel -->
     </classes>
